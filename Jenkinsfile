@@ -21,5 +21,24 @@ pipeline {
                 '''
             }
         }
+        
+        stage('Deploy') {
+            steps {
+                // deploying here
+                echo "The Env variable is $MY_ENV_VAR"
+                echo "kubectl apply -f ."
+                echo " BUild id is $BUILD_ID"
+            }
+        }
     }
+    post {
+        success {
+            // succefuly 
+            echo 'Good job pipeline succeeded'
+        }
+        failure {
+            echo ' Ooops opps failed we are outside'
+        }
+    }
+
 }
